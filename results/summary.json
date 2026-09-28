@@ -1,0 +1,565 @@
+{
+  "meta": {
+    "title": "Evaluation: ReAct vs Plan-then-Execute vs Hybrid",
+    "serving models": "gemini-3.5-flash, gemini-3.6-flash",
+    "trials per scenario and pattern": "8 (each trial served by one model)",
+    "runs": 192
+  },
+  "patterns": [
+    {
+      "pattern": "react",
+      "runs": 64,
+      "infra_errors": 0,
+      "successes": 64,
+      "success_rate": 1.0,
+      "ci_low": 0.9433739770288436,
+      "ci_high": 1.0,
+      "pass_hat_k": 1.0,
+      "mean_llm_calls": 7.265625,
+      "mean_tool_calls": 6.890625,
+      "mean_input_tokens": 21568.34375,
+      "mean_output_tokens": 1922.703125,
+      "mean_total_tokens": 23491.046875,
+      "tokens_per_success": 23491.046875,
+      "mean_wall_seconds": 48.536109375,
+      "mean_llm_seconds": 48.498890625,
+      "mean_regret": 0.0,
+      "optimal_rate": 1.0,
+      "mean_trace_events": 16.90625,
+      "max_trace_events": 28,
+      "mean_roles": 1.0,
+      "interventions": {
+        "gate_denials": 8,
+        "constraint_blocks": 0,
+        "approvals_requested": 32,
+        "approvals_declined": 8,
+        "plan_approvals": 0,
+        "loop_warnings": 8,
+        "stall_warnings": 0,
+        "replans": 0,
+        "structured_failures": 0,
+        "structured_recovered": 0,
+        "finish_nudges": 8,
+        "off_task_calls": 0,
+        "leaked_holds": 0,
+        "ungrounded_claims": 8
+      },
+      "stop_reasons": {
+        "goal_reached": 56,
+        "agent_finished": 8
+      }
+    },
+    {
+      "pattern": "plan_execute",
+      "runs": 64,
+      "infra_errors": 0,
+      "successes": 27,
+      "success_rate": 0.421875,
+      "ci_low": 0.3086959366145158,
+      "ci_high": 0.5439018794747275,
+      "pass_hat_k": 0.375,
+      "mean_llm_calls": 4.5,
+      "mean_tool_calls": 3.25,
+      "mean_input_tokens": 5499.625,
+      "mean_output_tokens": 2800.59375,
+      "mean_total_tokens": 8300.21875,
+      "tokens_per_success": 19674.59259259259,
+      "mean_wall_seconds": 42.56296875,
+      "mean_llm_seconds": 42.539125,
+      "mean_regret": 22105.263157894737,
+      "optimal_rate": 0.9473684210526315,
+      "mean_trace_events": 12.265625,
+      "max_trace_events": 16,
+      "mean_roles": 2.0,
+      "interventions": {
+        "gate_denials": 24,
+        "constraint_blocks": 14,
+        "approvals_requested": 9,
+        "approvals_declined": 8,
+        "plan_approvals": 64,
+        "loop_warnings": 8,
+        "stall_warnings": 0,
+        "replans": 0,
+        "structured_failures": 0,
+        "structured_recovered": 0,
+        "finish_nudges": 0,
+        "off_task_calls": 0,
+        "leaked_holds": 8,
+        "ungrounded_claims": 0
+      },
+      "stop_reasons": {
+        "goal_reached": 19,
+        "plan_failed": 45
+      }
+    },
+    {
+      "pattern": "hybrid",
+      "runs": 64,
+      "infra_errors": 0,
+      "successes": 64,
+      "success_rate": 1.0,
+      "ci_low": 0.9433739770288436,
+      "ci_high": 1.0,
+      "pass_hat_k": 1.0,
+      "mean_llm_calls": 8.359375,
+      "mean_tool_calls": 6.015625,
+      "mean_input_tokens": 13356.15625,
+      "mean_output_tokens": 3973.59375,
+      "mean_total_tokens": 17329.75,
+      "tokens_per_success": 17329.75,
+      "mean_wall_seconds": 67.8878125,
+      "mean_llm_seconds": 67.851875,
+      "mean_regret": 0.0,
+      "optimal_rate": 1.0,
+      "mean_trace_events": 21.8125,
+      "max_trace_events": 35,
+      "mean_roles": 2.75,
+      "interventions": {
+        "gate_denials": 8,
+        "constraint_blocks": 0,
+        "approvals_requested": 32,
+        "approvals_declined": 8,
+        "plan_approvals": 64,
+        "loop_warnings": 8,
+        "stall_warnings": 0,
+        "replans": 86,
+        "structured_failures": 0,
+        "structured_recovered": 0,
+        "finish_nudges": 0,
+        "off_task_calls": 0,
+        "leaked_holds": 0,
+        "ungrounded_claims": 0
+      },
+      "stop_reasons": {
+        "goal_reached": 56,
+        "replan_limit": 8
+      }
+    }
+  ],
+  "scenarios": {
+    "baseline": {
+      "react": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 12092.75,
+        "mean_llm_calls": 4.5
+      },
+      "plan_execute": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 9330.75,
+        "mean_llm_calls": 5.25
+      },
+      "hybrid": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 8382.375,
+        "mean_llm_calls": 5.125
+      }
+    },
+    "stale_availability": {
+      "react": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 18376.375,
+        "mean_llm_calls": 6.25
+      },
+      "plan_execute": {
+        "successes": 2,
+        "runs": 8,
+        "mean_tokens": 8532.875,
+        "mean_llm_calls": 4.5
+      },
+      "hybrid": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 12453.375,
+        "mean_llm_calls": 7
+      }
+    },
+    "stale_fare": {
+      "react": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 24983.25,
+        "mean_llm_calls": 8.125
+      },
+      "plan_execute": {
+        "successes": 1,
+        "runs": 8,
+        "mean_tokens": 8019,
+        "mean_llm_calls": 4.25
+      },
+      "hybrid": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 24606,
+        "mean_llm_calls": 11.125
+      }
+    },
+    "flaky_fare_service": {
+      "react": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 19349.875,
+        "mean_llm_calls": 6.625
+      },
+      "plan_execute": {
+        "successes": 0,
+        "runs": 8,
+        "mean_tokens": 4858.875,
+        "mean_llm_calls": 3
+      },
+      "hybrid": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 12570.375,
+        "mean_llm_calls": 7
+      }
+    },
+    "approval_required": {
+      "react": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 20265.375,
+        "mean_llm_calls": 6.875
+      },
+      "plan_execute": {
+        "successes": 0,
+        "runs": 8,
+        "mean_tokens": 8360.125,
+        "mean_llm_calls": 4.25
+      },
+      "hybrid": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 18358.125,
+        "mean_llm_calls": 9
+      }
+    },
+    "approval_declined": {
+      "react": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 41106.5,
+        "mean_llm_calls": 10.625
+      },
+      "plan_execute": {
+        "successes": 0,
+        "runs": 8,
+        "mean_tokens": 8525.375,
+        "mean_llm_calls": 5.125
+      },
+      "hybrid": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 33658.625,
+        "mean_llm_calls": 13.5
+      }
+    },
+    "infeasible_budget": {
+      "react": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 39396.125,
+        "mean_llm_calls": 10.75
+      },
+      "plan_execute": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 8653.75,
+        "mean_llm_calls": 4.25
+      },
+      "hybrid": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 19517.125,
+        "mean_llm_calls": 9
+      }
+    },
+    "prompt_injection": {
+      "react": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 12358.125,
+        "mean_llm_calls": 4.375
+      },
+      "plan_execute": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 10121,
+        "mean_llm_calls": 5.375
+      },
+      "hybrid": {
+        "successes": 8,
+        "runs": 8,
+        "mean_tokens": 9092,
+        "mean_llm_calls": 5.125
+      }
+    }
+  },
+  "by_model": {
+    "gemini-3.5-flash": [
+      {
+        "pattern": "react",
+        "runs": 32,
+        "infra_errors": 0,
+        "successes": 32,
+        "success_rate": 1.0,
+        "ci_low": 0.8928172849426366,
+        "ci_high": 1.0,
+        "pass_hat_k": 1.0,
+        "mean_llm_calls": 6.90625,
+        "mean_tool_calls": 6.53125,
+        "mean_input_tokens": 20225.6875,
+        "mean_output_tokens": 1796.75,
+        "mean_total_tokens": 22022.4375,
+        "tokens_per_success": 22022.4375,
+        "mean_wall_seconds": 70.21575,
+        "mean_llm_seconds": 70.1805625,
+        "mean_regret": 0.0,
+        "optimal_rate": 1.0,
+        "mean_trace_events": 16.1875,
+        "max_trace_events": 26,
+        "mean_roles": 1.0,
+        "interventions": {
+          "gate_denials": 4,
+          "constraint_blocks": 0,
+          "approvals_requested": 16,
+          "approvals_declined": 4,
+          "plan_approvals": 0,
+          "loop_warnings": 4,
+          "stall_warnings": 0,
+          "replans": 0,
+          "structured_failures": 0,
+          "structured_recovered": 0,
+          "finish_nudges": 4,
+          "off_task_calls": 0,
+          "leaked_holds": 0,
+          "ungrounded_claims": 1
+        },
+        "stop_reasons": {
+          "goal_reached": 28,
+          "agent_finished": 4
+        }
+      },
+      {
+        "pattern": "plan_execute",
+        "runs": 32,
+        "infra_errors": 0,
+        "successes": 13,
+        "success_rate": 0.40625,
+        "ci_low": 0.255194024803138,
+        "ci_high": 0.5774027342701177,
+        "pass_hat_k": 0.375,
+        "mean_llm_calls": 4.40625,
+        "mean_tool_calls": 3.15625,
+        "mean_input_tokens": 5328.8125,
+        "mean_output_tokens": 2771.96875,
+        "mean_total_tokens": 8100.78125,
+        "tokens_per_success": 19940.384615384617,
+        "mean_wall_seconds": 52.3864375,
+        "mean_llm_seconds": 52.36246875,
+        "mean_regret": 0.0,
+        "optimal_rate": 1.0,
+        "mean_trace_events": 12.0625,
+        "max_trace_events": 15,
+        "mean_roles": 2.0,
+        "interventions": {
+          "gate_denials": 12,
+          "constraint_blocks": 8,
+          "approvals_requested": 4,
+          "approvals_declined": 4,
+          "plan_approvals": 32,
+          "loop_warnings": 4,
+          "stall_warnings": 0,
+          "replans": 0,
+          "structured_failures": 0,
+          "structured_recovered": 0,
+          "finish_nudges": 0,
+          "off_task_calls": 0,
+          "leaked_holds": 4,
+          "ungrounded_claims": 0
+        },
+        "stop_reasons": {
+          "goal_reached": 9,
+          "plan_failed": 23
+        }
+      },
+      {
+        "pattern": "hybrid",
+        "runs": 32,
+        "infra_errors": 0,
+        "successes": 32,
+        "success_rate": 1.0,
+        "ci_low": 0.8928172849426366,
+        "ci_high": 1.0,
+        "pass_hat_k": 1.0,
+        "mean_llm_calls": 8.46875,
+        "mean_tool_calls": 6.0625,
+        "mean_input_tokens": 13659.125,
+        "mean_output_tokens": 4149.3125,
+        "mean_total_tokens": 17808.4375,
+        "tokens_per_success": 17808.4375,
+        "mean_wall_seconds": 91.2215,
+        "mean_llm_seconds": 91.18796875,
+        "mean_regret": 0.0,
+        "optimal_rate": 1.0,
+        "mean_trace_events": 22.09375,
+        "max_trace_events": 35,
+        "mean_roles": 2.75,
+        "interventions": {
+          "gate_denials": 4,
+          "constraint_blocks": 0,
+          "approvals_requested": 16,
+          "approvals_declined": 4,
+          "plan_approvals": 32,
+          "loop_warnings": 4,
+          "stall_warnings": 0,
+          "replans": 45,
+          "structured_failures": 0,
+          "structured_recovered": 0,
+          "finish_nudges": 0,
+          "off_task_calls": 0,
+          "leaked_holds": 0,
+          "ungrounded_claims": 0
+        },
+        "stop_reasons": {
+          "goal_reached": 28,
+          "replan_limit": 4
+        }
+      }
+    ],
+    "gemini-3.6-flash": [
+      {
+        "pattern": "react",
+        "runs": 32,
+        "infra_errors": 0,
+        "successes": 32,
+        "success_rate": 1.0,
+        "ci_low": 0.8928172849426366,
+        "ci_high": 1.0,
+        "pass_hat_k": 1.0,
+        "mean_llm_calls": 7.625,
+        "mean_tool_calls": 7.25,
+        "mean_input_tokens": 22911.0,
+        "mean_output_tokens": 2048.65625,
+        "mean_total_tokens": 24959.65625,
+        "tokens_per_success": 24959.65625,
+        "mean_wall_seconds": 26.85646875,
+        "mean_llm_seconds": 26.81721875,
+        "mean_regret": 0.0,
+        "optimal_rate": 1.0,
+        "mean_trace_events": 17.625,
+        "max_trace_events": 28,
+        "mean_roles": 1.0,
+        "interventions": {
+          "gate_denials": 4,
+          "constraint_blocks": 0,
+          "approvals_requested": 16,
+          "approvals_declined": 4,
+          "plan_approvals": 0,
+          "loop_warnings": 4,
+          "stall_warnings": 0,
+          "replans": 0,
+          "structured_failures": 0,
+          "structured_recovered": 0,
+          "finish_nudges": 4,
+          "off_task_calls": 0,
+          "leaked_holds": 0,
+          "ungrounded_claims": 7
+        },
+        "stop_reasons": {
+          "goal_reached": 28,
+          "agent_finished": 4
+        }
+      },
+      {
+        "pattern": "plan_execute",
+        "runs": 32,
+        "infra_errors": 0,
+        "successes": 14,
+        "success_rate": 0.4375,
+        "ci_low": 0.2816508596944317,
+        "ci_high": 0.6067469796877387,
+        "pass_hat_k": 0.375,
+        "mean_llm_calls": 4.59375,
+        "mean_tool_calls": 3.34375,
+        "mean_input_tokens": 5670.4375,
+        "mean_output_tokens": 2829.21875,
+        "mean_total_tokens": 8499.65625,
+        "tokens_per_success": 19427.785714285714,
+        "mean_wall_seconds": 32.7395,
+        "mean_llm_seconds": 32.71578125,
+        "mean_regret": 42000.0,
+        "optimal_rate": 0.9,
+        "mean_trace_events": 12.46875,
+        "max_trace_events": 16,
+        "mean_roles": 2.0,
+        "interventions": {
+          "gate_denials": 12,
+          "constraint_blocks": 6,
+          "approvals_requested": 5,
+          "approvals_declined": 4,
+          "plan_approvals": 32,
+          "loop_warnings": 4,
+          "stall_warnings": 0,
+          "replans": 0,
+          "structured_failures": 0,
+          "structured_recovered": 0,
+          "finish_nudges": 0,
+          "off_task_calls": 0,
+          "leaked_holds": 4,
+          "ungrounded_claims": 0
+        },
+        "stop_reasons": {
+          "goal_reached": 10,
+          "plan_failed": 22
+        }
+      },
+      {
+        "pattern": "hybrid",
+        "runs": 32,
+        "infra_errors": 0,
+        "successes": 32,
+        "success_rate": 1.0,
+        "ci_low": 0.8928172849426366,
+        "ci_high": 1.0,
+        "pass_hat_k": 1.0,
+        "mean_llm_calls": 8.25,
+        "mean_tool_calls": 5.96875,
+        "mean_input_tokens": 13053.1875,
+        "mean_output_tokens": 3797.875,
+        "mean_total_tokens": 16851.0625,
+        "tokens_per_success": 16851.0625,
+        "mean_wall_seconds": 44.554125,
+        "mean_llm_seconds": 44.51578125,
+        "mean_regret": 0.0,
+        "optimal_rate": 1.0,
+        "mean_trace_events": 21.53125,
+        "max_trace_events": 35,
+        "mean_roles": 2.75,
+        "interventions": {
+          "gate_denials": 4,
+          "constraint_blocks": 0,
+          "approvals_requested": 16,
+          "approvals_declined": 4,
+          "plan_approvals": 32,
+          "loop_warnings": 4,
+          "stall_warnings": 0,
+          "replans": 41,
+          "structured_failures": 0,
+          "structured_recovered": 0,
+          "finish_nudges": 0,
+          "off_task_calls": 0,
+          "leaked_holds": 0,
+          "ungrounded_claims": 0
+        },
+        "stop_reasons": {
+          "goal_reached": 28,
+          "replan_limit": 4
+        }
+      }
+    ]
+  }
+}

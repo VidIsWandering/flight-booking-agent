@@ -1,0 +1,8 @@
+{
+  "title": "Evaluation: ReAct vs Plan-then-Execute vs Hybrid",
+  "model": "gemini-3.6-flash",
+  "started": "2026-10-01 00:59 UTC",
+  "scenarios": 8,
+  "trials per scenario and pattern": 4,
+  "budget per run": "20 model calls, 30 tool calls, 300,000 tokens, 900s"
+}
